@@ -1,0 +1,19 @@
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  /*********************Begin : Surchage du CSS material******************/
+  .mat-form-field {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.125;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    letter-spacing: normal;
+}
+ /*********************End : Surchage du CSS material******************/
