@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../services/login.service';
 import 'rxjs/add/operator/map';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+
+interface MyObj {
+  token: string;
+}
 
 @Component({
   selector: 'app-login',
@@ -18,11 +23,11 @@ export class LoginComponent implements OnInit {
   onSubmit() {
   	this.loginService.sendCredential(this.credential.username, this.credential.password).subscribe(
   		res => {
-  			console.log("display res value : ",res);
-        // localStorage.setItem("xAuthToken", res.json().token);
-        // let token = `${res.headers.get(token)}`
-        // const keys = res.headers.keys();
-        // localStorage.setItem("xAuthToken", res;
+        console.log("display res value : ",res);
+        console.log('json stringify res : ',JSON.stringify(res));
+        let obj: MyObj = JSON.parse(JSON.stringify(res));
+        console.log("MyObj token value : ",obj.token);
+        localStorage.setItem("xAuthToken", obj.token);
   			this.loggedIn = true;
   			//location.reload();
   		},
@@ -31,11 +36,6 @@ export class LoginComponent implements OnInit {
   		}
   	);
   }
-
-  getCurrentTime() {
-    return this.loginService.sendCredential(this.credential.username, this.credential.password)
-        .pipe(map((res:Response) => res.json()));
-}
 
   ngOnInit() {
   }
