@@ -3,16 +3,21 @@
       <h3 [style.color]="'white'">Portail admin</h3>
   <div class="parent">
     <div class="children right-children">
-      <div class="child" [hidden]="!loggedIn"><a mat-flat-button style="cursor: pointer;">Liste des livres</a></div>
-      <div class="child" [hidden]="!loggedIn"><a mat-flat-button style="cursor: pointer;">Ajouter un livre</a></div>
-      <div class="child" [hidden]="!loggedIn"><a mat-flat-button style="cursor: pointer;">Deconnexion</a></div>
+      <div class="child" [hidden]="!loggedIn"><a mat-button style="cursor: pointer;">Liste des livres</a></div>
+      <div class="child" [hidden]="!loggedIn"><a mat-button style="cursor: pointer;">Ajouter un livre</a></div>
+      <div class="child" [hidden]="!loggedIn"><a mat-button style="cursor: pointer;" (click)="logout()">Deconnexion</a></div>
+      <div class="child" *ngIf="message"><a mat-button style="cursor: pointer;">Liste des livres</a></div>
+      <div class="child" *ngIf="message"><a mat-button style="cursor: pointer;">Ajouter un livre</a></div>
+      <div class="child" *ngIf="message"><a mat-button style="cursor: pointer;" (click)="logout()">Deconnexion</a></div>
+      <!-- <div class="child" *ngIf="loggedIn"><a mat-flat-button style="cursor: pointer;">Logout</a></div> -->
     </div>
   </div>
     </mat-toolbar-row>
   </mat-toolbar>
+  <div *ngIf="message" class="alert alert-success">{{message.text}}</div>
     <!-- <button mat-button color="mat-primary" (click)="toggleDisplay()">Toogle</button>
  <button mat-button color="primary">Primary</button>
   <button mat-flat-button color="primary">Primary</button>
   <button mat-flat-button color="accent">Accent</button> -->
-  <button mat-flat-button color="warn" (click)="toggleDisplay()">Toogle</button>
+  <!-- <button mat-flat-button color="warn" (click)="toggleDisplay()">Toogle</button> -->
   
