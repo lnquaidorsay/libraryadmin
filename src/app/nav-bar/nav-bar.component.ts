@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoginService } from '../services/login.service';
 interface User {
@@ -24,7 +25,7 @@ export class NavBarComponent implements OnInit {
   subscription: Subscription;
 
 
-  constructor(private loginService:LoginService) {
+  constructor(private loginService:LoginService, private router:Router) {
     // subscribe to login component messages
     this.subscription = this.loginService.getMessage().subscribe(message => { this.message = message; });
    }
@@ -41,6 +42,8 @@ export class NavBarComponent implements OnInit {
         location.reload();
       }
     );
+
+    this.router.navigate(['/']);
   }
 
   ngOnInit(): void {
