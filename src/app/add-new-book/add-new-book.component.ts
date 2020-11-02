@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from '../models/book';
 import { LoginService } from '../services/login.service';
 import { AddBookService } from '../services/add-book.service';
+import { UploadImageService } from '../services/upload-image.service';
+
+interface MyObj {
+  id: number;
+}
 
 @Component({
   selector: 'app-add-new-book',
@@ -17,18 +22,27 @@ export class AddNewBookComponent implements OnInit {
    color:String;
 
 
-  constructor(private loginService: LoginService, private addBookService:AddBookService) { }
+  constructor(private loginService: LoginService, private addBookService:AddBookService, private uploadImageService:UploadImageService) { }
 
   onSubmit() {
   	this.addBookService.sendBook(this.newBook).subscribe(
   		res => {
+        console.log("succes in sendBook res before : ",res);
+        let obj: MyObj = JSON.parse(JSON.stringify(res));
+        console.log("MyObj id value : ",obj.id);
+        // console.log("typeof res : ",typeof res);
+        // console.log("typeof res : ",res);
+        // if (typeof res === 'object') console.log("res is an object");
+        // if (typeof res === 'string') console.log("res is a string",JSON.parse(res));
+        // console.log("succes in sendBook res id before : ",JSON.parse(JSON.parse(JSON.stringify(res))).id);
+        this.uploadImageService.upload(obj.id);
   			this.bookAdded=true;
   			this.newBook = new Book();
   			this.newBook.active=true;
   			this.newBook.category="Management";
   			this.newBook.language="english";
-        this.newBook.format="paperback";
-        console.log("succes in sendBook res : ",res);
+        this.newBook.format="Couverture";
+        console.log("succes in sendBook res after : ",res);
   		},
   		error => {
   			console.log("error in sendBook : ",error);
@@ -39,6 +53,10 @@ export class AddNewBookComponent implements OnInit {
   sendMessage(): void {
     // send message to subscribers via observable subject
     this.loginService.sendMessage('Message from addNewBoobk Component to navbar Component!');
+}
+
+fileEvent(event): void {
+  this.uploadImageService.fileChangeEvent(event);
 }
 
 clearMessage(): void {

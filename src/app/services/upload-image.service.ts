@@ -20,7 +20,8 @@ export class UploadImageService {
   }
 
   fileChangeEvent(fileInput: any) {
-  	this.filesToUpload = <Array<File>> fileInput.target.files;
+	  this.filesToUpload = <Array<File>> fileInput.target.files;
+	  console.log('file change event : ',this.filesToUpload);
   }
 
   makeFileRequest(url:string, params:Array<string>, files:Array<File>) {

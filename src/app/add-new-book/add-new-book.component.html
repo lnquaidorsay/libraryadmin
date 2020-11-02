@@ -44,8 +44,8 @@
 				</mat-grid-tile>
 				<mat-grid-tile [colspan]="2" [rowspan]="1">
 					<mat-select placeholder="Format" id="format" name="format" [(ngModel)]="newBook.format">
-						<mat-option value="Broché">Broché</mat-option>
-						<mat-option value="Couverture rigide">Couverture rigide</mat-option>
+						<mat-option value="Broche">Broche</mat-option>
+						<mat-option value="Couverture">Couverture</mat-option>
 					</mat-select>
 				</mat-grid-tile>
 			</mat-grid-list>
@@ -107,7 +107,7 @@
 			</mat-form-field>
 			Image &nbsp;
 			<!-- <input id="title" type="file" id="bookImage" name="bookImage" (change)="uploadImageService.fileChangeEvent($event)"> -->
-			<input id="title" type="file" id="bookImage" name="bookImage" >
+			<input id="title" type="file" id="bookImage" name="bookImage" (change)="fileEvent($event)">
 			<br><br>
 			<mat-grid-list cols="20" rowHeight="60px">
 				<mat-grid-tile [colspan]="2" [rowspan]="1">
@@ -121,6 +121,6 @@
 		</form>
 	</div>
 	<div class="row" [hidden]="!bookAdded">
-		<h3>Le livre a été ajouté avec succès!</h3>
+		<h3 class="alert alert-success mt-1">Le livre a été ajouté avec succès!</h3>
 	</div>
 </div>
