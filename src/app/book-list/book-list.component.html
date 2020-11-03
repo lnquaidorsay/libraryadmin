@@ -1,0 +1,48 @@
+<!-- <p>book-list works!</p>
+<ul class="list-group">
+    <li *ngFor="let book of pbookList" class="list-groupitem">
+    {{book.title}}<span
+    class="badge">{{book.publicationDate|date:'dd/MM/yyyy'}}</span></li>
+</ul> -->
+
+<div class="container">
+	<div class="table-responsive" style="margin-top: 30px;">
+		<table id="bookListTable" class="table bordered highlight">
+			<thead>
+				<tr>
+					<th>
+						<input type="checkbox" (change)="updateSelected($event.target.checked)" />
+					</th>
+					<th>Titre</th>
+					<th>Auteur</th>
+					<th>Categorie</th>
+					<th>Liste des prix</th>
+					<th>Nos prix</th>
+					<th>Active?</th>
+					<th>Operation</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor = "let book of pbookList">
+					<td>
+						<input hidden="hidden" name="id" />
+						<input type="checkbox" [checked]="allChecked" (change)="updateRemoveBookList($event.target.checked, book)" />
+					</td>
+					<td><a (click)="onSelect(book)" style="cursor:pointer">{{book.title}}</a></td>
+					<td>{{book.author}}</td>
+					<td class="text-center">{{book.category}}</td>
+					<td class="text-center">{{book.listPrice}}</td>
+					<td class="text-center">{{book.ourPrice}}</td>
+					<td class="text-center">{{book.active}}</td>
+					<td class="text-center">
+						<input hidden="hidden" name="id" />
+                        <!-- <button mat-button (click)="openDialog(book)" value="delete"><span class="fa fa-times"></span> delete</button> -->
+                        <button mat-button class="mat-warn" value="delete" alt="Supprimer"> <i class="fas fa-trash" (click)="openDialog(book)"></i> </button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+    <button mat-raised-button class="mat-warn" style="width : 15em;" id="deleteSelected" (click)="removeSelectedBooks()">Supprimer les selectionnes</button>
+    <!-- json formatter and validator -->
+</div>

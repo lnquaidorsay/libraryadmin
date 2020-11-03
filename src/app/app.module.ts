@@ -44,13 +44,17 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { AddNewBookComponent } from './add-new-book/add-new-book.component';
+import { BookListComponent } from './book-list/book-list.component';
+import { ViewBookComponent } from './view-book/view-book.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     LoginComponent,
-    AddNewBookComponent
+    AddNewBookComponent,
+    BookListComponent,
+    ViewBookComponent
   ],
   imports: [
     BrowserModule,

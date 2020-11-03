@@ -6,7 +6,7 @@
       <div class="child" [hidden]="!loggedIn"><a mat-button style="cursor: pointer;">Liste des livres</a></div>
       <div class="child" [hidden]="!loggedIn"><a mat-button style="cursor: pointer;">Ajouter un livre</a></div>
       <div class="child" [hidden]="!loggedIn"><a mat-button style="cursor: pointer;" (click)="logout()">Deconnexion</a></div>
-      <div class="child" *ngIf="message"><a mat-button style="cursor: pointer;">Liste des livres</a></div>
+      <div class="child" *ngIf="message"><a mat-button style="cursor: pointer;" routerLink="/bookList">Liste des livres</a></div>
       <div class="child" *ngIf="message"><a mat-button style="cursor: pointer;" routerLink="/addNewBook">Ajouter un livre</a></div>
       <div class="child" *ngIf="message"><a mat-button style="cursor: pointer;" (click)="logout()">Deconnexion</a></div>
       <!-- <div class="child" *ngIf="loggedIn"><a mat-flat-button style="cursor: pointer;">Logout</a></div> -->
