@@ -19,6 +19,17 @@ export class UploadImageService {
   	});
   }
 
+  modify(bookId: number) {
+    console.log("modify filesToUpload successfully : ",this.filesToUpload);
+    if (this.filesToUpload.length>0) {
+      this.makeFileRequest("http://localhost:8181/book/update/image?id="+bookId, [], this.filesToUpload).then((result) => {
+      console.log("modify image successfully : ",result);
+    }, (error) => {
+      console.log("modify image error : ",error);
+    });
+    }
+  }
+
   fileChangeEvent(fileInput: any) {
 	  this.filesToUpload = <Array<File>> fileInput.target.files;
 	  console.log('file change event : ',this.filesToUpload);

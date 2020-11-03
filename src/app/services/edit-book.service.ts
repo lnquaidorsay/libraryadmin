@@ -1,22 +1,23 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Book } from '../models/book';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GetBookService {
+export class EditBookService {
 
   constructor(private http: HttpClient) { }
 
-  getBook(id:number):Observable<any> {
-    let url = "http://localhost:8181/book/"+id;
+  sendBook(book:Book):Observable<any> {
+    let url = "http://localhost:8181/book/update";
     const httpOptions = {
       headers: new HttpHeaders({ 
         'Content-Type': 'application/json',
   		  'x-auth-token' : localStorage.getItem('xAuthToken')
       })
     };
-    return this.http.get(url,httpOptions);
+    return this.http.post(url,JSON.stringify(book),httpOptions);
   }
 }

@@ -46,6 +46,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { AddNewBookComponent } from './add-new-book/add-new-book.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { ViewBookComponent } from './view-book/view-book.component';
+import { EditBookComponent } from './edit-book/edit-book.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { ViewBookComponent } from './view-book/view-book.component';
     LoginComponent,
     AddNewBookComponent,
     BookListComponent,
-    ViewBookComponent
+    ViewBookComponent,
+    EditBookComponent
   ],
   imports: [
     BrowserModule,

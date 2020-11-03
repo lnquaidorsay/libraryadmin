@@ -11,9 +11,12 @@ import { LoginService } from '../services/login.service';
 })
 export class ViewBookComponent implements OnInit {
 
-  private book:Book = new Book();
+ // book:Book = new Book();
+  //book;
+  //book={};
+  book:Book = new Book();
   pbook:any;
-  private bookId: number;
+  bookId: number;
 
   constructor(private getBookService:GetBookService,
     private route:ActivatedRoute, 
@@ -21,21 +24,46 @@ export class ViewBookComponent implements OnInit {
     private loginService: LoginService) { }
 
   ngOnInit() {
-  	this.route.params.forEach((params: Params) => {
-  		this.bookId = Number.parseInt(params['id']);
-  	});
 
-  	this.getBookService.getBook(this.bookId).subscribe(
-  		res => {
-        console.log("View book success : ",res);
-  			this.pbook = res;
-  		},
+
+    this.bookId=+this.route.snapshot.params['id'];
+
+    this.getBookService.getBook(this.bookId)
+    .subscribe(
+      data=>{
+        console.log("View book success : ",data);
+        this.book=data
+      },
   		error => {
   			console.log("View book error : ",error);
   		}
-  	);
+        );
+
+
+  	// this.route.params.forEach((params: Params) => {
+  	// 	this.bookId = Number.parseInt(params['id']);
+    // });
+    
+   
+
+  	// this.getBookService.getBook(this.bookId).subscribe(
+  	// 	res => {
+    //     console.log("View book success : ",res);
+    //     this.pbook = res;
+    //     this.book = res;
+  	// 	},
+  	// 	error => {
+  	// 		console.log("View book error : ",error);
+  	// 	}
+  	// );
 
   	
+  }
+
+  onSelect(book:Book) {
+    this.router.navigate(['/editBook', this.book.id]);
+    // .then(s => location.reload())
+    ;
   }
 
   sendMessage(): void {
@@ -46,5 +74,12 @@ export class ViewBookComponent implements OnInit {
 clearMessage(): void {
   this.loginService.clearMessage();
 }
+
+
+
+// onSelect(book:Book) {
+//   this.selectedBook=book;
+//   this.router.navigate(['/viewBook', this.selectedBook.id]);
+// }
 
 }

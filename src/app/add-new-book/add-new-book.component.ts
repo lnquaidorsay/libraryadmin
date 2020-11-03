@@ -41,7 +41,7 @@ export class AddNewBookComponent implements OnInit {
   			this.newBook.active=true;
   			this.newBook.category="Management";
   			this.newBook.language="english";
-        this.newBook.format="Couverture";
+        this.newBook.format="paperback";
         console.log("succes in sendBook res after : ",res);
   		},
   		error => {
