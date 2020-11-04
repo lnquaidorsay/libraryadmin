@@ -1,5 +1,6 @@
 <div class="container">
 	<div [hidden]="bookUpdated">
+		<a routerLink="/bookList"><i class="fas fa-backward"></i>Go Back</a>
 		<h3 style="margin-top: 30px;">Update Book Information <span style="font-size:small">* is a required field</span></h3>
 
 		<form (ngSubmit)="onSubmit()">

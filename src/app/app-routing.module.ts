@@ -5,6 +5,7 @@ import { BookListComponent } from './book-list/book-list.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
 import { LoginComponent } from './login/login.component';
 import { ViewBookComponent } from './view-book/view-book.component';
+import { CommonModule } from "@angular/common";
 
 const routes: Routes = [
   {
@@ -35,7 +36,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), CommonModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

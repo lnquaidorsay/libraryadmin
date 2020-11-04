@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { Book } from '../models/book';
 import { GetBookListService } from '../services/get-book-list.service';
 import { LoginService } from '../services/login.service';
+import { RemoveBookService } from '../services/remove-book.service';
+//import Swal from 'sweetalert2/dist/sweetalert2.js';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-book-list',
@@ -21,7 +24,8 @@ export class BookListComponent implements OnInit {
   constructor(
   		private getBookListService: GetBookListService,
       private router:Router,
-      private loginService: LoginService
+      private loginService: LoginService,
+      private removeBookService: RemoveBookService,
     ) { }
     
     onSelect(book:Book) {
@@ -29,27 +33,37 @@ export class BookListComponent implements OnInit {
       this.router.navigate(['/viewBook', this.selectedBook.id]);
     }
 
-  ngOnInit() {
-  	this.getBookListService.getBookList().subscribe(
-  		res => {
-        console.log("List book : ",res);
-        this.pbookList=res
-      //   res.forEach(function (value) {
+    onSelect2(book:Book) {
+      this.router.navigate(['/editBook', book.id]);
+      // .then(s => location.reload())
+      ;
+    }
+    getBookList() {
+      this.getBookListService.getBookList().subscribe(
+        res => {
+          console.log("List book : ",res);
+          this.pbookList=res
+          //   res.forEach(function (value) {
       //     console.log("Book obtained : ",value);
       // });
         // this.bookList=res.json();
         //this.bookList=res;
-  		}, 
-  		error => {
-  			console.log("List book error : ",error);
-  		}
-  	);
+        }, 
+        error => {
+          console.log("List book error : ",error);
+        }
+      );
+    }
+
+  ngOnInit() {
+  	this.getBookList();
   }
 
   sendMessage(): void {
     // send message to subscribers via observable subject
     this.loginService.sendMessage('Message from bookList Component to navbar Component!');
 }
+
 
 
 updateSelected(event) {
@@ -64,12 +78,35 @@ clearMessage(): void {
   this.loginService.clearMessage();
 }
 
-openDialog(book:Book) {
+openDialog2(book:Book) {
+  Swal.fire({
+    title: 'Voulez-vous supprimer ce livre?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Supprimer!',
+    cancelButtonText: 'Annuler'
+  }).then((result) => {
+    if (result.value) {
+       this.removeBookService.sendBook(book.id).subscribe(data => {
+        Swal.fire(
+          'Effectué!',
+          'Le contact a été supprimé.',
+          'success'
+        )
+        console.log("data return with remove : ",data);
+       this.getBookList();
+       //location.reload();
+    },error => {
+      console.log("Erreur lors de la suppression du contact : ",error);
+    });
+  } 
+  })
+}
+
+
+removeSelectedBooks(){
 
 }
 
-removeSelectedBooks() {
-
 }
 
-}

@@ -37,9 +37,9 @@
 					<td class="text-center">
 						<input hidden="hidden" name="id" />
 						<!-- <button mat-button (click)="openDialog(book)" value="delete"><span class="fa fa-times"></span> delete</button> -->
-						<button mat-button class="mat-primary" value="detail" alt="visualiser"> <i class="fas fa-eye" (click)="onSelect(book)"></i> </button>
-						<button mat-button class="mat-basic" value="editer" alt="editer"> <i class="fas fa-edit" (click)="onSelect(book)"></i> </button>
-                        <button mat-button class="mat-warn" value="delete" alt="Supprimer"> <i class="fas fa-trash" (click)="openDialog(book)"></i> </button>
+						<button mat-button class="mat-primary" matTooltip="Visualiser"  value="detail" alt="visualiser"> <i class="fas fa-eye" (click)="onSelect(book)"></i> </button>
+						<button mat-button class="mat-basic" matTooltip="Editer"  value="editer" alt="editer"> <i class="fas fa-edit" (click)="onSelect2(book)"></i> </button>
+                        <button mat-button class="mat-warn" matTooltip="Supprimer"  value="delete" alt="Supprimer"> <i class="fas fa-trash" (click)="openDialog2(book)"></i> </button>
 					</td>
 				</tr>
 			</tbody>

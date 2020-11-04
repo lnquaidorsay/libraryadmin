@@ -47,6 +47,7 @@ import { AddNewBookComponent } from './add-new-book/add-new-book.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { ViewBookComponent } from './view-book/view-book.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { EditBookComponent } from './edit-book/edit-book.component';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     BrowserAnimationsModule,
 	  FormsModule,
